@@ -9,7 +9,9 @@
 <body class="app">
 
   <header class="app-header">
-    <h1>📋 TaskFlow — {{ user.username }}</h1>
+    <h1>📋 TaskFlow — {{ user.username }}
+        <span class="task-count">({{ tasks|length }} tasks)</span>
+    </h1>
 
     <div>
       <button id="theme-btn" type="button">🌙 Dark mode</button>
@@ -42,6 +44,13 @@
     <input type="date" name="due_date">
 
     <button type="submit" class="btn">Add</button>
+  </form>
+
+  <form method="post" action="{% url 'clear_completed' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn" style="background:var(--text-muted)">
+        Clear completed
+    </button>
   </form>
 
 
